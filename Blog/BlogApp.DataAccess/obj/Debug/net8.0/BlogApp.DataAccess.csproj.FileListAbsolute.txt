@@ -1,0 +1,14 @@
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\obj\Debug\net8.0\BlogApp.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\obj\Debug\net8.0\BlogApp.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\obj\Debug\net8.0\BlogApp.DataAccess.AssemblyInfo.cs
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\obj\Debug\net8.0\BlogApp.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\obj\Debug\net8.0\BlogApp.DataAccess.csproj.AssemblyReference.cache
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\bin\Debug\net8.0\BlogApp.DataAccess.deps.json
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\bin\Debug\net8.0\BlogApp.DataAccess.runtimeconfig.json
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\bin\Debug\net8.0\BlogApp.DataAccess.dll
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\bin\Debug\net8.0\BlogApp.DataAccess.pdb
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\obj\Debug\net8.0\BlogApp.DataAccess.dll
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\obj\Debug\net8.0\refint\BlogApp.DataAccess.dll
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\obj\Debug\net8.0\BlogApp.DataAccess.pdb
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\obj\Debug\net8.0\BlogApp.DataAccess.genruntimeconfig.cache
+C:\Users\Pc\source\repos\Blog\BlogApp.DataAccess\obj\Debug\net8.0\ref\BlogApp.DataAccess.dll
