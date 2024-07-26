@@ -3,63 +3,60 @@
 @*Model namespace using directive should be added to _ViewImports.cshtml.*@
 
 @{
-    ViewData["Title"] = "Create blogs";
+    ViewData["Title"] = "Create Blog";
+    var today = DateTime.Now.ToString("yyyy-MM-ddTHH:mm");
 }
 
-@if (ViewData["ViewMessage"] is not null)
-{
-	<p class="text-danger">@ViewData["ViewMessage"]</p>
-}
-<h1>@ViewData["Title"]</h1>
+<div class="container mt-5">
+    @if (ViewData["ViewMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @ViewData["ViewMessage"]
+        </div>
+    }
 
-<h4>Blog</h4>
-<hr />
-<div class="row">
-    <div class="col-12">
-        <form asp-action="Create">
-		@Html.AntiForgeryToken()
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="row mb-3">
-                <label asp-for="Name" class="col-2 col-form-label"></label>
-				<div class="col-5">
-					<input asp-for="Name" class="form-control" />
-					<span asp-validation-for="Name" class="text-danger"></span>
-				</div>
-            </div>
-            <div class="row mb-3">
-                <label asp-for="Description" class="col-2 col-form-label"></label>
-				<div class="col-5">
-					<input asp-for="Description" class="form-control" />
-					<span asp-validation-for="Description" class="text-danger"></span>
-				</div>
-            </div>
-            <div class="row mb-3">
-                <label asp-for="CreatedAt" class="col-2 col-form-label"></label>
-				<div class="col-5">
-					<input asp-for="CreatedAt" class="form-control" />
-					<span asp-validation-for="CreatedAt" class="text-danger"></span>
-				</div>
-            </div>
-            <div class="row mb-3">
-                <label asp-for="UpdatedAt" class="col-2 col-form-label"></label>
-				<div class="col-5">
-					<input asp-for="UpdatedAt" class="form-control" />
-					<span asp-validation-for="UpdatedAt" class="text-danger"></span>
-				</div>
-            </div>
-            <div class="row mb-3">
-				<div class="offset-2 col-5">
-					<input type="submit" value="Save" class="btn btn-primary" />
-					&nbsp;&nbsp;
-                    <button type="reset" class="btn btn-outline-primary">Reset</button>
-					&nbsp;&nbsp;
-					<a asp-action="Index">Back to List</a>
-				</div>
-            </div>
-        </form>
+    <h1 class="mb-4">@ViewData["Title"]</h1>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <form asp-action="Create">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Name" class="form-label">Blog Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter blog name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" placeholder="Enter blog description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="CreatedAt" class="form-label">Created At</label>
+                    <input asp-for="CreatedAt" class="form-control" type="datetime-local" value="@today" max="@today" />
+                    <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="UpdatedAt" class="form-label">Updated At</label>
+                    <input asp-for="UpdatedAt" class="form-control" type="datetime-local" value="@today" max="@today" />
+                    <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+                </div>
+
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                    <a asp-action="Index" class="btn btn-link">Back to List</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-
-
-
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+}

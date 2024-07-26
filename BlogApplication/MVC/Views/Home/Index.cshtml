@@ -2,6 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="jumbotron text-center">
     <h1 class="display-4">Welcome to Blog App!</h1>
+    <p class="lead">Create, share, and explore blogs with ease.</p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p class="lead">You are logged in as <strong>@User.Identity.Name</strong>.</p>
+        <a class="btn btn-primary btn-lg" asp-area="" asp-controller="Blogs" asp-action="Index">Explore Blogs</a>
+    }
+    else
+    {
+        <a class="btn btn-primary btn-lg" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+        <a class="btn btn-secondary btn-lg" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+    }
 </div>

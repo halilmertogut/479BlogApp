@@ -1,14 +1,12 @@
-﻿using Business.Models;
-using DataAccess.Context;
-using DataAccess.Entities;
-using DataAccess.Results.Bases;
-using DataAccess.Results;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using Business.Models;
+using DataAccess.Context;
+using DataAccess.Entities;
+using DataAccess.Results;
+using DataAccess.Results.Bases;
+using Microsoft.AspNetCore.Identity;
 
 namespace Business.Services
 {
@@ -24,24 +22,28 @@ namespace Business.Services
 
     public class PostService : IPostService
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly Db _db;
 
-        public PostService(Db db)
+        public PostService(UserManager<ApplicationUser> userManager, Db db)
         {
+            _userManager = userManager;
             _db = db;
         }
 
         public IQueryable<PostModel> Query()
         {
-            return _db.Posts.Include(p => p.Blog).Include(p => p.User).Select(p => new PostModel
+            return _db.Posts.Select(p => new PostModel
             {
-                Id = p.Id, // Inherited from BaseEntity
+                Id = p.Id,
                 Title = p.Title,
                 Content = p.Content,
                 UserId = p.UserId,
                 BlogId = p.BlogId,
-                // BlogName = p.Blog.Name, // Assuming you want to display the Blog's Name in the PostModel
-                // UserName = p.User.Username // Assuming you want to display the User's Username in the PostModel
+                BlogName = p.Blog.Name,
+                UserName = p.User.UserName, // Correct property name
+                CreatedAt = p.CreatedAt,
+                UpdatedAt = p.UpdatedAt
             });
         }
 
@@ -53,6 +55,8 @@ namespace Business.Services
                 Content = model.Content?.Trim(),
                 UserId = model.UserId,
                 BlogId = model.BlogId,
+                CreatedAt = model.CreatedAt,
+                UpdatedAt = model.UpdatedAt
             };
 
             _db.Posts.Add(entity);
@@ -73,6 +77,7 @@ namespace Business.Services
             existingPost.Content = model.Content?.Trim();
             existingPost.UserId = model.UserId;
             existingPost.BlogId = model.BlogId;
+            existingPost.UpdatedAt = model.UpdatedAt;
 
             _db.SaveChanges();
 

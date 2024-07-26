@@ -1,53 +1,47 @@
 ﻿@model BlogModel
-@*Generated from Custom Template.*@
-@*Model namespace using directive should be added to _ViewImports.cshtml.*@
-
 @{
     ViewData["Title"] = "Blog Details";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>@Model.Name</h1>
+<p>@Model.Description</p>
+<p>Created At: @Model.CreatedAt</p>
+<p>Updated At: @Model.UpdatedAt</p>
 
-<div>
-    <h4>Blog</h4>
-    <hr />
-        <dl class="row">
-            <dt class="col-2">
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd class="col-10">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-2">
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-            <dd class="col-10">
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-2">
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </dt>
-            <dd class="col-10">
-                @Html.DisplayFor(model => model.CreatedAt)
-            </dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-2">
-                @Html.DisplayNameFor(model => model.UpdatedAt)
-            </dt>
-            <dd class="col-10">
-                @Html.DisplayFor(model => model.UpdatedAt)
-            </dd>
-        </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>&nbsp;|&nbsp;
-    <a asp-action="Index">Back to List</a>
-</div>
+<h2>Posts</h2>
+<p>
+    <a asp-action="AddPost" asp-route-id="@Model.Id" class="btn btn-primary">Add Post</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model.Posts)
+        {
+            <tr>
+                <td>@post.Title</td>
+                <td>@post.Content</td>
+                <td>@post.CreatedAt</td>
+                <td>@post.UpdatedAt</td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@post.Id" asp-controller="Posts" class="btn btn-secondary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@post.Id" asp-controller="Posts" class="btn btn-danger">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-
-
+<p>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</p>

@@ -1,11 +1,6 @@
 ﻿using DataAccess.Records.Bases;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 #nullable disable
 
@@ -27,8 +22,10 @@ namespace Business.Models
 
         [Required(ErrorMessage = "Password is required!")]
         [StringLength(255, ErrorMessage = "Password must be maximum {1} characters!")]
-        public string PasswordHash { get; set; }
-        #endregion
+        [DataType(DataType.Password)]
+        public string Password { get; set; } // Use Password for user input
 
+        public string Id { get; set; } // Add Id property for user identifier
+        #endregion
     }
 }

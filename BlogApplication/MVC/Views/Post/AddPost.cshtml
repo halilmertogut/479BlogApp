@@ -1,0 +1,51 @@
+﻿@model PostModel
+@{
+    ViewData["Title"] = "Add Post";
+    var today = DateTime.Now.ToString("yyyy-MM-ddTHH:mm");
+}
+
+<h1 class="mb-4">@ViewData["Title"]</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form asp-action="AddPost">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Content" class="form-label"></label>
+                <textarea asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="CreatedAt" class="form-label"></label>
+                <input asp-for="CreatedAt" class="form-control" type="datetime-local" value="@today" max="@today" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="UpdatedAt" class="form-label"></label>
+                <input asp-for="UpdatedAt" class="form-control" type="datetime-local" value="@today" max="@today" />
+                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="BlogId" />
+            <input type="hidden" asp-for="BlogName" />
+            <input type="hidden" asp-for="UserName" />
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                <a asp-action="Details" asp-controller="Blogs" asp-route-id="@Model.BlogId" class="btn btn-secondary">Back to Blog</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -11,7 +11,6 @@ namespace Business.Models
 {
     public class PostModel : RecordBase
     {
-        #region Entity Properties
         [Required(ErrorMessage = "Title is required!")]
         [StringLength(200, ErrorMessage = "Title must be maximum {1} characters!")]
         public string Title { get; set; }
@@ -19,9 +18,19 @@ namespace Business.Models
         [Required(ErrorMessage = "Content is required!")]
         public string Content { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; } // Changed to string
         public int BlogId { get; set; }
-        #endregion
 
+        [Required(ErrorMessage = "BlogName is required")]
+        public string BlogName { get; set; }
+
+        [Required(ErrorMessage = "UserName is required")]
+        public string UserName { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
+
+
+
 }

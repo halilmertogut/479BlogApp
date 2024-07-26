@@ -9,6 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Business.Models;
+using DataAccess.Context;
+using DataAccess.Entities;
+using DataAccess.Results.Bases;
+using DataAccess.Results;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Business.Services
 {
     public interface ICommentService
@@ -23,7 +34,7 @@ namespace Business.Services
 
     public class CommentService : ICommentService
     {
-        private readonly Db _db;
+        private readonly Db _db; // do not change
 
         public CommentService(Db db)
         {
@@ -34,7 +45,7 @@ namespace Business.Services
         {
             return _db.Comments.Select(c => new CommentModel
             {
-                Id = c.Id, 
+                Id = c.Id,
                 Content = c.Content,
                 UserId = c.UserId,
                 PostId = c.PostId,
@@ -88,3 +99,4 @@ namespace Business.Services
         public CommentModel GetItem(int id) => Query().SingleOrDefault(c => c.Id == id);
     }
 }
+
